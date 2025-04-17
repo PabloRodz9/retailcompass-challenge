@@ -5,7 +5,7 @@ import { statuses } from '../../utils/statuses';
 import { brands } from '../../utils/brands';
 import { useTranslation } from 'react-i18next';
 
-export default function SidebarFilters() {
+const Sidebar = () => {
     const brand = useFilterStore((state) => state.brand)
     const setBrand = useFilterStore((state) => state.setBrand)
     const status = useFilterStore((state) => state.status)
@@ -34,3 +34,5 @@ export default function SidebarFilters() {
         </Box>
     );
 }
+
+export default Sidebar

@@ -3,11 +3,11 @@ import { usePagination } from '../../hooks/usePagination';
 import { useProducts } from '../../hooks/useProducts';
 import { columns } from '../../utils/products/producTableColumns';
 import { mapProductsToRows } from '../../utils/products/products.utils';
-import { ProductTableUI } from './ProductTableUI';
 import { enUS, esES } from '@mui/x-data-grid/locales';
+import ProductTableUI from './ProductTableUI';
 
 
-export default function ProductTable() {
+const ProductTable = () => {
     const { page, size, setPage, setSize } = usePagination();
     const { data, isLoading, error, isError } = useProducts({ page, size });
     const rows = mapProductsToRows(data?.products);
@@ -32,3 +32,5 @@ export default function ProductTable() {
         />
     );
 }
+
+export default ProductTable

@@ -14,7 +14,7 @@ interface Props {
     isError: boolean;
 }
 
-export function ProductTableUI({
+const ProductTableUI = ({
     rows,
     columns,
     loading,
@@ -25,7 +25,7 @@ export function ProductTableUI({
     localeText,
     error,
     isError
-}: Props) {
+}: Props) => {
     return (
         <Box style={{ height: '100%', width: '100%' }}>
             {
@@ -69,3 +69,6 @@ export function ProductTableUI({
         </Box>
     );
 }
+
+
+export default ProductTableUI
