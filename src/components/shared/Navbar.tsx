@@ -1,15 +1,15 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
+import { Box } from '@mui/material';
 
 function Navbar() {
     return (
         <AppBar position="static">
-            <Container maxWidth="xl">
+            <Box>
                 <Toolbar disableGutters>
-                    <img style={{ width: '9rem', }} src="/logo.svg" alt="RetailCompass logo" />
+                    <img style={{ width: '9rem', marginLeft:'1%' }} src="/logo.svg" alt="RetailCompass logo" />
                 </Toolbar>
-            </Container>
+            </Box>
         </AppBar>
     );
 }
