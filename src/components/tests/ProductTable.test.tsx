@@ -1,4 +1,3 @@
-// ProductTable.test.js
 import { render, screen } from '@testing-library/react';
 import i18n from '../../i18n';
 import ProductTable from '../products/ProductTable';
