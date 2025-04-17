@@ -1,11 +1,10 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
+// ProductTable.test.js
+import { render, screen } from '@testing-library/react';
 import i18n from '../../i18n';
 import ProductTable from '../products/ProductTable';
-import { usePagination } from '../../hooks/usePagination';
-import { useProducts } from '../../hooks/useProducts';
+import { vi, type Mock } from 'vitest';
+import { I18nextProvider } from 'react-i18next';
 
-// Mocks de los hooks
 vi.mock('../../hooks/usePagination', () => ({
     usePagination: vi.fn(() => ({
         page: 1,
@@ -15,24 +14,60 @@ vi.mock('../../hooks/usePagination', () => ({
     })),
 }));
 
-vi.mock('../../hooks/useProducts', () => ({
-    useProducts: vi.fn(() => ({
-        data: { products: [], paging: { total: 100 } },
-        isLoading: false,
-        error: null,
-        isError: false,
-    })),
-}));
+let useProducts: Mock;
+vi.mock('../../hooks/useProducts', async () => {
+    const actual = await vi.importActual<typeof import('../../hooks/useProducts')>('../../hooks/useProducts');
+    return {
+        ...actual,
+        useProducts: vi.fn(),
+    };
+});
 
-// Mock de la función columns
-vi.mock('../../utils/products/producTableColumns', () => ({
+vi.mock('../../utils/products/productTableColumns', () => ({
     columns: vi.fn(() => [
-        { field: 'name', headerName: 'Product Name' },
-        { field: 'price', headerName: 'Price' },
+        { field: 'name', headerName: 'Nombre', flex: 2, sortable: false },
+        { field: 'storeName', headerName: 'Tienda', flex: 1, sortable: false },
+        {
+            field: 'normalPrice',
+            headerName: 'Precio normal',
+            flex: 1,
+            sortable: false,
+            valueFormatter: (_: any, row: any) =>
+                row.normalPrice ? `$${row.normalPrice.toFixed(2)}` : 'N/A',
+        },
+        {
+            field: 'offerPrice',
+            headerName: 'Precio de oferta',
+            flex: 1,
+            sortable: false,
+            valueFormatter: (_: any, row: any) =>
+                row.offerPrice ? `$${row.offerPrice.toFixed(2)}` : 'N/A',
+        },
+        {
+            field: 'lowest',
+            headerName: 'Precio más bajo',
+            flex: 1,
+            sortable: false,
+            valueFormatter: (_: any, row: any) =>
+                row.lowest ? `$${row.lowest.toFixed(2)}` : 'N/A',
+        },
+        {
+            field: 'discount',
+            headerName: 'Descuento',
+            flex: 1,
+            sortable: false,
+            valueGetter: (_: any, row: any) => {
+                const normal = row.normalPrice;
+                const lowest = row.lowest;
+                if (!normal || !lowest) return 'N/A';
+                const discount = ((normal - lowest) / normal) * 100;
+                return `${discount.toFixed(2)}%`;
+            },
+        },
     ]),
 }));
 
-describe('ProductTable component', () => {
+describe('<ProductTable />', () => {
     const renderComponent = () =>
         render(
             <I18nextProvider i18n={i18n}>
@@ -40,36 +75,35 @@ describe('ProductTable component', () => {
             </I18nextProvider>
         );
 
-    it('renderiza correctamente los textos traducidos', () => {
-        renderComponent();
-        expect(screen.getByText(/Product Name/i)).toBeInTheDocument();
-        expect(screen.getByText(/Price/i)).toBeInTheDocument();
+    beforeEach(async () => {
+        vi.clearAllMocks();
+
+        const mod = await import('../../hooks/useProducts');
+        useProducts = mod.useProducts as Mock;
     });
 
+    it('debería mostrar los encabezados de la tabla en español', () => {
+        useProducts.mockReturnValue({
+            data: { products: [], paging: { total: 100 } },
+            isLoading: false,
+            error: null,
+            isError: false,
+        });
 
-    it('ajusta el idioma a español cuando se cambia el idioma', () => {
-        // i18n.changeLanguage('en');
         renderComponent();
-        expect(screen.getByText('Product Name')).toBeInTheDocument(); 
+        expect(screen.getByText('Nombre')).toBeInTheDocument();
+        expect(screen.getByText('Precio normal')).toBeInTheDocument();
     });
 
-    // it('muestra la tabla correctamente sin errores de carga', () => {
-    //     renderComponent();
-    //     expect(screen.queryByText(/loading/i)).not.toBeInTheDocument();
-    //     expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
-    // });
+    it('debería mostrar un mensaje de error si hay un error en los datos', () => {
+        useProducts.mockReturnValue({
+            data: null,
+            isLoading: false,
+            error: { message: 'Error loading products' },
+            isError: true,
+        });
 
-    // it('muestra un mensaje de error si hay un error en los datos', () => {
-    //     vi.mock('../../hooks/useProducts', () => ({
-    //         useProducts: vi.fn(() => ({
-    //             data: null,
-    //             isLoading: false,
-    //             error: { message: 'Error loading products' },
-    //             isError: true,
-    //         })),
-    //     }));
-
-    //     renderComponent();
-    //     expect(screen.getByText(/Error loading products/i)).toBeInTheDocument();
-    // });
+        renderComponent();
+        expect(screen.getByText(/Error loading products/i)).toBeInTheDocument();
+    });
 });

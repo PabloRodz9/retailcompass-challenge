@@ -1,3 +1,4 @@
+// ProductTableUI.test.js
 import { render, screen } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
@@ -26,28 +27,28 @@ describe('<ProductTableUI />', () => {
         );
     };
 
-    test('renderiza la tabla cuando no hay errores', () => {
+    it('debería renderizar la tabla cuando no hay errores', () => {
         renderComponent();
         expect(screen.getByRole('grid')).toBeInTheDocument();
     });
 
-    test('renderiza el mensaje de error si isError es true', () => {
+    it('debería renderizar el mensaje de error si isError es true', () => {
         renderComponent({
             isError: true,
             error: { message: 'Error cargando los datos' },
         });
-        expect(screen.getByText(/Error cargando los datos/)).toBeInTheDocument();
+        expect(screen.getByText(/Error cargando los datos/i)).toBeInTheDocument();
     });
 
-    test('renderiza mensaje por defecto si error no tiene message', () => {
+    it('debería renderizar un mensaje por defecto si error no tiene message', () => {
         renderComponent({
             isError: true,
             error: null,
         });
-        expect(screen.getByText(/An unexpected error occurred/)).toBeInTheDocument();
+        expect(screen.getByText(/An unexpected error occurred/i)).toBeInTheDocument();
     });
 
-    test('renderiza las columnas correctamente', () => {
+    it('debería renderizar las columnas correctamente', () => {
         renderComponent({
             rows: [{ id: 1 }],
             columns: [{ field: 'id', headerName: 'ID', width: 100 }],
