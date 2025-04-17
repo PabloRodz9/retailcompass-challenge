@@ -1,1 +1,12 @@
-{}
+{
+    "filters": "Filters",
+    "status": "Status",
+    "brand": "Brand",
+    "name": "Name",
+    "store": "Store",
+    "normal_price": "Normal price",
+    "offer_price": "Offer price",
+    "lowest_price": "Lowest price",
+    "discount": "Discount",
+    "rows_per_page": "Rows per page"
+}

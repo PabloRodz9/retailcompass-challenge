@@ -1,1 +1,12 @@
-{}
+{
+    "filters": "Filtros",
+    "status": "Estado",
+    "brand": "Marca",
+    "name": "Nombre",
+    "store": "Tienda",
+    "normal_price": "Precio normal",
+    "offer_price": "Precio oferta",
+    "lowest_price": "Precio más bajo",
+    "discount":"Descuento",
+    "rows_per_page": "Filas por página"
+}

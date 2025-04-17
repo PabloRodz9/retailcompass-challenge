@@ -1,6 +1,5 @@
 import { Categories } from "./Categories";
 import { Prices } from "./Prices";
-
 export interface Product {
     productId: number;
     storeId: number;

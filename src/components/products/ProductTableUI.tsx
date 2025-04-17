@@ -1,5 +1,5 @@
 // components/ProductTableUI.tsx
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridLocaleText } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
     page: number;
     size: number;
     onPageChange: (page: number, size: number) => void;
+    localeText: Partial<GridLocaleText>
 }
 
 export function ProductTableUI({
@@ -19,7 +20,8 @@ export function ProductTableUI({
     rowCount,
     page,
     size,
-    onPageChange
+    onPageChange,
+    localeText
 }: Props) {
     return (
         <Box style={{ height: '100%', width: '100%' }}>
@@ -33,6 +35,7 @@ export function ProductTableUI({
                 rows={rows}
                 columns={columns}
                 loading={loading}
+                localeText={localeText}
                 disableColumnFilter
                 paginationModel={{ page, pageSize: size }}
                 paginationMode='server'

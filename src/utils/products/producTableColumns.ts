@@ -1,12 +1,13 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { calculateDiscount } from "../functions";
+import i18n from "../../i18n";
 
 export const columns: GridColDef[] = [
-    { field: 'name', headerName: 'Nombre', flex: 2, sortable: false },
-    { field: 'storeName', headerName: 'Tienda', flex: 1, sortable: false },
+    { field: 'name', headerName: `${i18n.t('name')}`, flex: 2, sortable: false },
+    { field: 'storeName', headerName: `${i18n.t('store')}`, flex: 1, sortable: false },
     {
         field: 'normalPrice',
-        headerName: 'Precio Normal',
+        headerName: `${i18n.t('normal_price')}`,
         flex: 1,
         sortable: false,
         valueFormatter: (_, row) =>
@@ -14,7 +15,7 @@ export const columns: GridColDef[] = [
     },
     {
         field: 'offerPrice',
-        headerName: 'Precio Oferta',
+        headerName: `${i18n.t('offer_price')}`,
         flex: 1,
         sortable: false,
         valueFormatter: (_, row) =>
@@ -22,7 +23,7 @@ export const columns: GridColDef[] = [
     },
     {
         field: 'lowest',
-        headerName: 'Precio Más Bajo',
+        headerName: `${i18n.t('lowest_price')}`,
         flex: 1,
         sortable: false,
         valueFormatter: (_, row) =>
@@ -30,7 +31,7 @@ export const columns: GridColDef[] = [
     },
     {
         field: 'discount',
-        headerName: 'Descuento',
+        headerName: `${i18n.t('discount')}`,
         flex: 1,
         sortable: false,
         valueGetter: (_, row) => {
