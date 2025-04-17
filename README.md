@@ -44,4 +44,3 @@ El proyecto está diseñado para ser **100% responsive** y se adapta correctamen
    ```bash
    npm run dev
       ```
-# retailcompass-challenge
