@@ -1,4 +1,3 @@
-// components/ProductTable.tsx
 import { useTranslation } from 'react-i18next';
 import { usePagination } from '../../hooks/usePagination';
 import { useProducts } from '../../hooks/useProducts';
@@ -10,7 +9,7 @@ import { enUS, esES } from '@mui/x-data-grid/locales';
 
 export default function ProductTable() {
     const { page, size, setPage, setSize } = usePagination();
-    const { data, isLoading } = useProducts({ page, size });
+    const { data, isLoading, error, isError } = useProducts({ page, size });
     const rows = mapProductsToRows(data?.products);
     const { i18n } = useTranslation()
     const localeText = i18n.language === 'es' ? esES.components.MuiDataGrid.defaultProps.localeText : enUS.components.MuiDataGrid.defaultProps.localeText;
@@ -20,6 +19,8 @@ export default function ProductTable() {
             rows={rows}
             columns={columns()}
             loading={isLoading}
+            error={error}
+            isError={isError}
             rowCount={data?.paging.total}
             page={page}
             size={size}
