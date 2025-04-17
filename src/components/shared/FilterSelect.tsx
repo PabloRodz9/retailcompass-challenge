@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 interface Option {
     label: string;
@@ -9,33 +9,30 @@ interface FilterSelectProps {
     label: string;
     value: string;
     onChange: (value: string) => void;
-    options: Option[]
-    fullWidth?: boolean;
-    sx?: object;
+    options: Option[];
 }
 
-export default function FilterSelect({
-    label,
-    value,
-    onChange,
-    options,
-    fullWidth = true,
-    sx = {},
-}: FilterSelectProps) {
+const FilterSelect = ({ label, value, onChange, options }: FilterSelectProps) => {
+    const id = `select-${label}`;
+
     return (
-        <FormControl fullWidth={fullWidth} sx={{ mb: 2, ...sx }}>
-            <InputLabel>{label}</InputLabel>
+        <FormControl fullWidth>
+            <InputLabel id={`${id}-label`}>{label}</InputLabel>
             <Select
+                labelId={`${id}-label`}
+                id={id}
                 value={value}
                 label={label}
-                onChange={(e: SelectChangeEvent) => onChange(e.target.value)}
+                onChange={(e) => onChange(e.target.value)}
             >
-                {(options as Option[]).map((opt) => (
-                    <MenuItem key={opt.value} value={opt.value}>
-                        {opt.label}
+                {options.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                        {option.label}
                     </MenuItem>
                 ))}
             </Select>
         </FormControl>
     );
-}
+};
+
+export default FilterSelect;
