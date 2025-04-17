@@ -44,3 +44,5 @@ El proyecto está diseñado para ser **100% responsive** y se adapta correctamen
    ```bash
    npm run dev
       ```
+
+8. Podes descomentar las devtools en el componente main.tsx para testear estado de carga, error y fetching de la aplicación

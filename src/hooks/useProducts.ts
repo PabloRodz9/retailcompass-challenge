@@ -18,6 +18,6 @@ export const useProducts = ({ page = 0, size = 10 }: ProductsFilters) => {
             const data = await getProducts(params);
             return data;
         },
-        staleTime: 5000
+        staleTime: 1000 * 60 * 2 //2 minutos de cache valida
     });
 };
