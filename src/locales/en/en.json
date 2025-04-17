@@ -8,5 +8,7 @@
     "offer_price": "Offer price",
     "lowest_price": "Lowest price",
     "discount": "Discount",
-    "rows_per_page": "Rows per page"
+    "rows_per_page": "Rows per page",
+    "spanish": "Spanish",
+    "english": "English"
 }
