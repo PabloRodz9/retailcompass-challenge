@@ -1,4 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface Option {
     label: string;
@@ -14,6 +15,7 @@ interface FilterSelectProps {
 
 const FilterSelect = ({ label, value, onChange, options }: FilterSelectProps) => {
     const id = `select-${label}`;
+    const { t } = useTranslation();
 
     return (
         <FormControl fullWidth>
@@ -27,7 +29,7 @@ const FilterSelect = ({ label, value, onChange, options }: FilterSelectProps) =>
             >
                 {options.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
-                        {option.label}
+                        {t(option.label)}
                     </MenuItem>
                 ))}
             </Select>
