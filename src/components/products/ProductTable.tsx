@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { usePagination } from '../../hooks/usePagination';
 import { useProducts } from '../../hooks/useProducts';
 import { columns } from '../../utils/products/producTableColumns';
-import { mapProductsToRows } from '../../utils/products/products.utils';
+import { customLocaleText, mapProductsToRows } from '../../utils/products/products.utils';
 import { enUS, esES } from '@mui/x-data-grid/locales';
 import ProductTableUI from './ProductTableUI';
 
@@ -12,7 +12,12 @@ const ProductTable = () => {
     const { data, isLoading, error, isError } = useProducts({ page, size });
     const rows = mapProductsToRows(data?.products);
     const { i18n } = useTranslation()
-    const localeText = i18n.language === 'es' ? esES.components.MuiDataGrid.defaultProps.localeText : enUS.components.MuiDataGrid.defaultProps.localeText;
+    const dataGridLocaleMap = new Map([
+        ['es', esES.components.MuiDataGrid.defaultProps.localeText],
+        ['en', enUS.components.MuiDataGrid.defaultProps.localeText],
+    ]);
+    const defaultLocaleText = dataGridLocaleMap.get(i18n.language) || enUS.components.MuiDataGrid.defaultProps.localeText;
+    const localeText = { ...defaultLocaleText, ...customLocaleText };
 
     return (
         <ProductTableUI
