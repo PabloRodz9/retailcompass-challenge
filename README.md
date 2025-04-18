@@ -51,13 +51,14 @@ El proyecto está diseñado para ser **100% responsive** y se adapta correctamen
 
 ### 🔍 SEO y Metadata
 
-Hay cuestiones no controladas, como por ejemplo:
+Últimamente he estado aprendiendo acerca de SEO y decidí implementar algunas de ellas en index.html para **mejorar la indexación en motores de búsqueda**.
 
-- SEO
-- Metadata
-- Titles
+---
 
-Estas no afectan ni entran en el **scope de esta prueba técnica**, pero podrían implementarse para **mejorar la indexación en motores de búsqueda**.
+### ♿ Accesibilidad
+
+He realizado un curso en Linkedin y en este momento estoy realizando otro en edx (https://learning.edx.org/course/course-v1:W3Cx+WAI0.1x+3T2019/home) aunque no entra en el scope
+de esta prueba técnica y por tanto decidí no implementarlo.
 
 ---
 
@@ -66,6 +67,8 @@ Estas no afectan ni entran en el **scope de esta prueba técnica**, pero podría
 Honestamente, hasta el día de hoy **no me ha tocado testear profesionalmente**, pero tengo **muchas ganas e interés en aprender** a hacerlo correctamente.
 
 De todos modos, dejo algunos **tests básicos** que pude realizar leyendo la documentación de **React Testing Library**.
+
+
 
 
 
