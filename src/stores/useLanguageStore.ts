@@ -11,6 +11,7 @@ interface LanguageStore {
 }
 
 export const useLanguageStore = create<LanguageStore>()(
+    //Persistencia en localStorage
     persist(
         (set, get) => ({
             language: i18n.language as Language,
