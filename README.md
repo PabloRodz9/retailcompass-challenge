@@ -47,10 +47,25 @@ El proyecto está diseñado para ser **100% responsive** y se adapta correctamen
 
 8. Podes descomentar las devtools en el componente main.tsx para testear estado de carga, error y fetching de la aplicación
 
-COMENTARIOS:
-Hay cuestiones no controladas de, por ejemplo, seo, metadata, titles y demás (que no afectan ni entran en scope de esta prueba técnica) que podrían hacerse para mejorar la indexación en motores de búsqueda.
+## 📝 Comentarios
 
-Respecto al testing, honestamente no me ha tocado testear hasta el día de hoy pero si tengo muchas ganas e interés en aprender a hacerlo correctamente. De todos modos, dejo algunos tests básicos que pude hacer leyendo la documentación de react testing library.
+### 🔍 SEO y Metadata
+
+Hay cuestiones no controladas, como por ejemplo:
+
+- SEO
+- Metadata
+- Titles
+
+Estas no afectan ni entran en el **scope de esta prueba técnica**, pero podrían implementarse para **mejorar la indexación en motores de búsqueda**.
+
+---
+
+### 🧪 Testing
+
+Honestamente, hasta el día de hoy **no me ha tocado testear profesionalmente**, pero tengo **muchas ganas e interés en aprender** a hacerlo correctamente.
+
+De todos modos, dejo algunos **tests básicos** que pude realizar leyendo la documentación de **React Testing Library**.
 
 
 
