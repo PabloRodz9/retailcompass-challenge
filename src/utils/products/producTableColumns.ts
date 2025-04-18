@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { calculateDiscount } from "../functions";
 
 export const columns = (): GridColDef[] => {
-    const { t } = useTranslation(); 
+    const { t } = useTranslation();
 
-    return useMemo(() => [
+    return [
         { field: 'name', headerName: t('name'), flex: 2, sortable: false },
         { field: 'storeName', headerName: t('store'), flex: 1, sortable: false },
         {
@@ -46,5 +46,6 @@ export const columns = (): GridColDef[] => {
                 return `${discount.toFixed(2)}%`;
             },
         },
-    ], [t]);
-};
+    ]
+}
+
