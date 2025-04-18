@@ -81,7 +81,7 @@ describe('<ProductTable />', () => {
         useProducts = mod.useProducts as Mock;
     });
 
-    it('debería mostrar los encabezados de la tabla en español', () => {
+    it('should display the table headers in Spanish', () => {
         useProducts.mockReturnValue({
             data: { products: [], paging: { total: 100 } },
             isLoading: false,
@@ -94,7 +94,7 @@ describe('<ProductTable />', () => {
         expect(screen.getByText('Precio normal')).toBeInTheDocument();
     });
 
-    it('debería mostrar un mensaje de error si hay un error en los datos', () => {
+    it('should display an error message if there is an error in the data', () => {
         useProducts.mockReturnValue({
             data: null,
             isLoading: false,

@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { prettyDOM, render, screen } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 import { vi } from 'vitest';
 import ProductTableUI from '../products/ProductTableUI';
+import { customLocaleText } from '../../utils/products/products.utils';
 
 describe('<ProductTableUI />', () => {
     const defaultProps = {
@@ -26,12 +27,30 @@ describe('<ProductTableUI />', () => {
         );
     };
 
-    it('debería renderizar la tabla cuando no hay errores', () => {
+    it('should render the table when there are no errors', () => {
         renderComponent();
         expect(screen.getByRole('grid')).toBeInTheDocument();
     });
 
-    it('debería renderizar el mensaje de error si isError es true', () => {
+    it('should render the empty message when rows are empty', () => {
+        renderComponent({
+            rows: [],
+            columns: [], 
+            loading: false,
+            rowCount: 0,
+            page: 0,
+            size: 5,
+            onPageChange: vi.fn(),
+            localeText: customLocaleText,
+            error: null,
+            isError: false,
+        });
+
+        expect(screen.getByText('No se encontraron productos')).toBeInTheDocument();
+    });
+
+
+    it('should render the error message if isError is true', () => {
         renderComponent({
             isError: true,
             error: { message: 'Error cargando los datos' },
@@ -39,7 +58,7 @@ describe('<ProductTableUI />', () => {
         expect(screen.getByText(/Error cargando los datos/i)).toBeInTheDocument();
     });
 
-    it('debería renderizar un mensaje por defecto si error no tiene message', () => {
+    it('should render a default message if error has no message', () => {
         renderComponent({
             isError: true,
             error: null,
@@ -47,7 +66,7 @@ describe('<ProductTableUI />', () => {
         expect(screen.getByText(/An unexpected error occurred/i)).toBeInTheDocument();
     });
 
-    it('debería renderizar las columnas correctamente', () => {
+    it('should render the columns correctly', () => {
         renderComponent({
             rows: [{ id: 1 }],
             columns: [{ field: 'id', headerName: 'ID', width: 100 }],

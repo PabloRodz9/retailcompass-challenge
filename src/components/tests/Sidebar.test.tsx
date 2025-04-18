@@ -25,19 +25,19 @@ describe('<Sidebar />', () => {
         renderComponent();
     });
 
-    it('debería renderizar el título "Filtros"', () => {
+    it('should render the title "Filters"', () => {
         expect(screen.getByText('Filtros')).toBeInTheDocument();
     });
 
-    it('debería renderizar el selector de estado con la etiqueta "Estado"', () => {
+    it('should render the state selector with the label "State"', () => {
         expect(screen.getByLabelText('Estado')).toBeInTheDocument();
     });
 
-    it('debería renderizar el selector de marca con la etiqueta "Marca"', () => {
+    it('should render the brand selector with the label "Brand"', () => {
         expect(screen.getByLabelText('Marca')).toBeInTheDocument();
     });
 
-    it('debería aplicar estilos al título "Filtros"', () => {
+    it('should apply styles to the title "Filters"', () => {
         const titleElement = screen.getByText('Filtros');
         expect(titleElement).toHaveStyle('margin-bottom: 16px');
     });

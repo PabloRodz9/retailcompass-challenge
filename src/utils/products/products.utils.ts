@@ -13,4 +13,5 @@ export const mapProductsToRows = (products: Product[] = []) =>
 
 export const customLocaleText = {
     noRowsLabel: i18n.t('no_rows_label'),
+    noResultsOverlayLabel: i18n.t('no_rows_label'),
 };
