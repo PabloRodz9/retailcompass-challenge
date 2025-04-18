@@ -1,13 +1,20 @@
 import { Switch, FormControlLabel, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useLanguageStore } from '../../stores/useLanguageStore';
-import { languageMap } from '../../i18n';
+import argFlag from '../../assets/argFlag.png';
+import usaFlag from '../../assets/usaFlag.png';
 
 
 export const LanguageSwitch = () => {
     const { language, toggleLanguage } = useLanguageStore();
-    const currentLanguage = languageMap.get(language)
+    const { t } = useTranslation()
+    
+    const languageMap = new Map<string, { label: string; flag: string }>([
+        ['es', { label: t('spanish'), flag: argFlag }],
+        ['en', { label: t('english'), flag: usaFlag }],
+    ]);
 
+    const currentLanguage = languageMap.get(language)
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <FormControlLabel
