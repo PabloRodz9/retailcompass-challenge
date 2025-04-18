@@ -22,30 +22,30 @@ El proyecto está diseñado para ser **100% responsive** y se adapta correctamen
 
 ## ⚙️ Configuración del entorno
 
-3. Clonar el repositorio:
+1. Clonar el repositorio:
    ```bash
    git clone <url-del-repo>
    cd retailcompass-challenge
    ```
 
-  4. Instalar las dependencias:
+  2. Instalar las dependencias:
 		```bash
 		npm install
 		```
 
-5. Crear un archivo .env en la raíz del proyecto basado en el archivo .template.env provisto
+3. Crear un archivo .env en la raíz del proyecto basado en el archivo .template.env provisto
 
-6. Completar el archivo .env con tu API key o credenciales necesarias:
+4. Completar el archivo .env con tu API key o credenciales necesarias:
 	```bash
 	VITE_API_KEY=tu-api-key-aqui
 	```
 
-7. Ejecutar el proyecto en desarrollo
+5. Ejecutar el proyecto en desarrollo
    ```bash
    npm run dev
       ```
 
-8. Podes descomentar las devtools en el componente main.tsx para testear estado de carga, error y fetching de la aplicación
+6. Podes descomentar las devtools en el componente main.tsx para testear estado de carga, error y fetching de la aplicación
 
 ## 📝 Comentarios
 
