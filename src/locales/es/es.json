@@ -11,5 +11,8 @@
     "rows_per_page": "Filas por página",
     "spanish": "Español",
     "english": "Ingles",
-    "no_rows_label": "No se encontraron productos"
+    "no_rows_label": "No se encontraron productos",
+    "available": " Disponible",
+    "out_of_stock": "Sin stock",
+    "all": "Todos"
 }

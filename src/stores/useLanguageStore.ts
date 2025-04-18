@@ -15,7 +15,8 @@ export const useLanguageStore = create<LanguageStore>()(
         (set, get) => ({
             language: i18n.language as Language,
             toggleLanguage: () => {
-                const newLang = get().language ?? 'en';
+                //si hubiese que agregar un nuevo idioma, se puede hacer con un array/map de idiomas y cambiar el toggle por un select
+                const newLang = get().language === 'en' ? 'es' : 'en';
                 i18n.changeLanguage(newLang);
                 set({ language: newLang });
             },

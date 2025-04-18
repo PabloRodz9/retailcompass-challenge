@@ -26,8 +26,9 @@ i18n
     }
   });
 
-export const languageMap = {
-  es: { label: i18n.t('spanish'), flag: argFlag },
-  en: { label: i18n.t('english'), flag: usaFlag },
-};
+  //se utiliza un mapa para hacerlo extensible a nuevos idiomas en el futuro
+export const languageMap = new Map<string, { label: string; flag: string }>([
+  ['es', { label: i18n.t('spanish'), flag: argFlag }],
+  ['en', { label: i18n.t('english'), flag: usaFlag }],
+]);
 export default i18n;

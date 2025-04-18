@@ -6,7 +6,7 @@ import { languageMap } from '../../i18n';
 
 export const LanguageSwitch = () => {
     const { language, toggleLanguage } = useLanguageStore();
-    const currentLanguage = languageMap[language];
+    const currentLanguage = languageMap.get(language)
 
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
