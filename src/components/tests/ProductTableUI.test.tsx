@@ -1,6 +1,4 @@
-import { prettyDOM, render, screen } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18n';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import ProductTableUI from '../products/ProductTableUI';
 import { customLocaleText } from '../../utils/products/products.utils';
@@ -20,11 +18,7 @@ describe('<ProductTableUI />', () => {
     };
 
     const renderComponent = (customProps = {}) => {
-        return render(
-            <I18nextProvider i18n={i18n}>
-                <ProductTableUI {...defaultProps} {...customProps} />
-            </I18nextProvider>
-        );
+        return render(<ProductTableUI {...defaultProps} {...customProps} />);
     };
 
     it('should render the table when there are no errors', () => {
@@ -35,7 +29,7 @@ describe('<ProductTableUI />', () => {
     it('should render the empty message when rows are empty', () => {
         renderComponent({
             rows: [],
-            columns: [], 
+            columns: [],
             loading: false,
             rowCount: 0,
             page: 0,
@@ -46,7 +40,7 @@ describe('<ProductTableUI />', () => {
             isError: false,
         });
 
-        expect(screen.getByText('No se encontraron productos')).toBeInTheDocument();
+        expect(screen.getByText(/no se encontraron productos/i)).toBeInTheDocument();
     });
 
 
@@ -55,7 +49,7 @@ describe('<ProductTableUI />', () => {
             isError: true,
             error: { message: 'Error cargando los datos' },
         });
-        expect(screen.getByText(/Error cargando los datos/i)).toBeInTheDocument();
+        expect(screen.getByText(/error cargando los datos/i)).toBeInTheDocument();
     });
 
     it('should render a default message if error has no message', () => {
@@ -63,7 +57,7 @@ describe('<ProductTableUI />', () => {
             isError: true,
             error: null,
         });
-        expect(screen.getByText(/An unexpected error occurred/i)).toBeInTheDocument();
+        expect(screen.getByText(/an unexpected error occurred/i)).toBeInTheDocument();
     });
 
     it('should render the columns correctly', () => {

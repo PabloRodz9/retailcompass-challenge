@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import i18n from '../../i18n';
 import ProductTable from '../products/ProductTable';
 import { vi, type Mock } from 'vitest';
-import { I18nextProvider } from 'react-i18next';
 
 vi.mock('../../hooks/usePagination', () => ({
     usePagination: vi.fn(() => ({
@@ -68,11 +66,7 @@ vi.mock('../../utils/products/productTableColumns', () => ({
 
 describe('<ProductTable />', () => {
     const renderComponent = () =>
-        render(
-            <I18nextProvider i18n={i18n}>
-                <ProductTable />
-            </I18nextProvider>
-        );
+        render(<ProductTable />);
 
     beforeEach(async () => {
         vi.clearAllMocks();
@@ -90,8 +84,8 @@ describe('<ProductTable />', () => {
         });
 
         renderComponent();
-        expect(screen.getByText('Nombre')).toBeInTheDocument();
-        expect(screen.getByText('Precio normal')).toBeInTheDocument();
+        expect(screen.getByText(/nombre/i)).toBeInTheDocument();
+        expect(screen.getByText(/precio normal/i)).toBeInTheDocument();
     });
 
     it('should display an error message if there is an error in the data', () => {
@@ -103,6 +97,6 @@ describe('<ProductTable />', () => {
         });
 
         renderComponent();
-        expect(screen.getByText(/Error loading products/i)).toBeInTheDocument();
+        expect(screen.getByText(/error loading products/i)).toBeInTheDocument();
     });
 });

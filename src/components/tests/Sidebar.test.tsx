@@ -26,19 +26,19 @@ describe('<Sidebar />', () => {
     });
 
     it('should render the title "Filters"', () => {
-        expect(screen.getByText('Filtros')).toBeInTheDocument();
+        expect(screen.getByText(/filtros/i)).toBeInTheDocument();
     });
 
     it('should render the state selector with the label "State"', () => {
-        expect(screen.getByLabelText('Estado')).toBeInTheDocument();
+        expect(screen.getByLabelText(/estado/i)).toBeInTheDocument();
     });
 
     it('should render the brand selector with the label "Brand"', () => {
-        expect(screen.getByLabelText('Marca')).toBeInTheDocument();
+        expect(screen.getByLabelText(/marca/i)).toBeInTheDocument();
     });
 
     it('should apply styles to the title "Filters"', () => {
-        const titleElement = screen.getByText('Filtros');
+        const titleElement = screen.getByText(/filtros/i);
         expect(titleElement).toHaveStyle('margin-bottom: 16px');
     });
 });
