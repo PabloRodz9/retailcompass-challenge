@@ -10,5 +10,6 @@
     "discount": "Descuento",
     "rows_per_page": "Filas por página",
     "spanish": "Español",
-    "english": "Ingles"
+    "english": "Ingles",
+    "no_rows_label": "No se encontraron productos"
 }
