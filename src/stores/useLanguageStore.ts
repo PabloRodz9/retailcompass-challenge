@@ -15,7 +15,7 @@ export const useLanguageStore = create<LanguageStore>()(
         (set, get) => ({
             language: i18n.language as Language,
             toggleLanguage: () => {
-                const newLang = get().language === 'en' ? 'es' : 'en';
+                const newLang = get().language ?? 'en';
                 i18n.changeLanguage(newLang);
                 set({ language: newLang });
             },
@@ -25,9 +25,9 @@ export const useLanguageStore = create<LanguageStore>()(
             },
         }),
         {
-            name: 'language-storage', 
+            name: 'language-storage',
             onRehydrateStorage: () => (state) => {
-                if (state) i18n.changeLanguage(state.language); 
+                if (state) i18n.changeLanguage(state.language);
             },
         }
     )
