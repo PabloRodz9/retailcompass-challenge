@@ -1,16 +1,12 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-
-interface Option {
-    label: string;
-    value: string;
-}
+import { Option } from '../../interfaces/Option';
 
 interface FilterSelectProps {
     label: string;
     value: string;
     onChange: (value: string) => void;
-    options: Option[];
+    options: Option[]
 }
 
 const FilterSelect = ({ label, value, onChange, options }: FilterSelectProps) => {
